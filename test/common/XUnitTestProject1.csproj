@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFrameworks>net45;net46</TargetFrameworks>
 
     <IsPackable>false</IsPackable>
   </PropertyGroup>
@@ -13,14 +13,15 @@
     <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />
   </ItemGroup>
 
-  <!--
   <ItemGroup>
-    <ProjectReference Include="..\person\person.csproj" />
+    <ProjectReference Include="..\..\person\person.csproj" />
   </ItemGroup>
-  -->
+
+  <!--
 
   <ItemGroup>
 	<PackageReference Include="gudusoft.family" Version="1.0.0" />
   </ItemGroup>
+  -->
   
 </Project>
