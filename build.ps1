@@ -132,12 +132,11 @@ foreach ($test in ls test/*) {
 		
 Pop-Location
 
-Push-Location $gitDir
+
 git clone --single-branch --branch master https://sqlparser:bike2metro@github.com/sqlparser/gsp_demo_dotnet.git
-Pop-Location
+
 
 robocopy $generatedLibDir $workingDir\lib *.dll /E /NFL /NDL /NJS /NC /NS /NP /XO /XF | Out-Default
-# robocopy $gspDemoSrcDir $workingDir\src * /E /NFL /NDL /NJS /NC /NS /NP /XO /XF | Out-Default
 
 
 Compress-Archive -Path $workingDir\* -DestinationPath $workingDir\$zipFileName
