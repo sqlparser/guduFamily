@@ -1,3 +1,11 @@
+<<<<<<< HEAD
+=======
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+>>>>>>> 40fb4cffd1ca6e127efe40df89d4771bde1104a4
 trigger:
 - master
 
@@ -5,6 +13,7 @@ pool:
   vmImage: 'windows-2019'
 
 steps:
+<<<<<<< HEAD
 - powershell: |
     dotnet --info
   displayName: 'Dotnet installs'
@@ -14,3 +23,12 @@ steps:
     .\build.ps1
   displayName: 'Run build'
   
+=======
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
+>>>>>>> 40fb4cffd1ca6e127efe40df89d4771bde1104a4
