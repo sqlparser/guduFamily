@@ -21,3 +21,14 @@ steps:
     PathtoPublish: '$(Build.SourcesDirectory)\Working' 
   condition: succeededOrFailed()
   
+  
+
+- task: CopyFilesOverSSH@0
+  displayName: 'Securely copy files to the remote machine'
+  inputs:
+    sshEndpoint: wangzSSH
+    sourceFolder: '$(Build.SourcesDirectory)\Working'
+    targetFolder: /big/dom/xwangz/azure/gsp_dotnet
+    contents: '*.zip'
+    flattenFolders: true
+  enabled: false  

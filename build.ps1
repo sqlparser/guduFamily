@@ -37,8 +37,10 @@ function Execute-Command($command) {
     } while (!$success)
 }
 
-  $zipFileName = "gudusoft.gsqlparser.zip"
-  $majorVersion = "12.0"
+  $customerId = "dag"
+  $majorVersion = "3.0.0.3"
+  $zipFileName = "gudusoft.gsqlparser."+$customerId+"."+$majorVersion+".zip"
+  
   $majorWithReleaseVersion = "12.0.2"
   $nugetPrerelease = $null
   $version = GetVersion $majorWithReleaseVersion
@@ -155,10 +157,6 @@ else
 }
  
 Write-Host $RoboCopyMessage
-
-Push-Location $gitDir
-git clone git@github.com:sqlparser/gsp_demo_dotnet.git
-Pop-Location
 
 
 Compress-Archive -Path $workingDir\* -DestinationPath $workingDir\$zipFileName

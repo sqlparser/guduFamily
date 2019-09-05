@@ -1,6 +1,25 @@
 D:\a\1\s\person\bin\Release\net45\person.dll
 
-
+steps:
+- task: SSH@0
+  displayName: 'Run shell commands on remote machine'
+  inputs:
+    sshEndpoint: wangzSSH
+    commands: 'mkdir -p /big/dom/xwangz/azure/p'
+  enabled: false
+  
+  
+steps:
+- task: CopyFilesOverSSH@0
+  displayName: 'Securely copy files to the remote machine'
+  inputs:
+    sshEndpoint: wangzSSH
+    sourceFolder: '$(build.artifactstagingdirectory)'
+    targetFolder: /big/dom/xwangz/azure/gsp_dotnet
+    flattenFolders: true
+  enabled: false  
+  
+  
 steps:
 - task: ArchiveFiles@2
   displayName: 'Archive $(Build.SourcesDirectory)/Working'
