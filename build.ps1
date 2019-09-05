@@ -135,6 +135,32 @@ Pop-Location
 
 robocopy $generatedLibDir $workingDir\lib *.dll /E /NFL /NDL /NJS /NC /NS /NP /XO /XF | Out-Default
 
+ 
+# Check exit code
+If (($LASTEXITCODE -eq 0))
+{
+    $RoboCopyMessage = "EXITCODE: 0, Succeeded"               
+}
+elseif (($LASTEXITCODE -gt 0) -and ($LASTEXITCODE -lt 16))
+{
+    $RoboCopyMessage = "EXITCODE: 1-15, Warning"
+}
+elseif ($LASTEXITCODE -eq 16)
+{
+    $RoboCopyMessage = "EXITCODE: 16, Error"
+}
+else
+{
+    $RoboCopyMessage = "Robocopy did not run"
+}
+ 
+Write-Host $RoboCopyMessage
+
+Compress-Archive -Path $workingDir\* -DestinationPath $workingDir\$zipFileName
+
+Write-Host "exit code from Compress-Archive $LASTEXITCODE"
+
+exit 0
 
 
 
