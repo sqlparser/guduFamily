@@ -156,9 +156,15 @@ else
  
 Write-Host $RoboCopyMessage
 
+Push-Location $gitDir
+git clone git@github.com:sqlparser/gsp_demo_dotnet.git
+Pop-Location
+
+
 Compress-Archive -Path $workingDir\* -DestinationPath $workingDir\$zipFileName
 
 Write-Host "exit code from Compress-Archive $LASTEXITCODE"
+
 
 exit 0
 

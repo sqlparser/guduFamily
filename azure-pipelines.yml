@@ -14,21 +14,7 @@ steps:
     .\build.ps1
   displayName: 'Run build'
   
-  
-# Download GitHub Release
-# Downloads a GitHub Release from a repository
-- task: DownloadGitHubRelease@0
-  displayName: 'Download dotnet demo src to $(System.ArtifactsDirectory)'
-  inputs:
-    connection: 'dotnet_demo_github'
-    userRepository: 'sqlparser/gsp_demo_dotnet'
-    defaultVersionType: 'latest' # Options: latest, specificVersion, specificTag
-    version: 'abc' # Required when defaultVersionType != Latest
-    itemPattern: '**' # Optional
-    downloadPath: '$(System.ArtifactsDirectory)' 
-    
-
-    
+     
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: drop'
   inputs:
