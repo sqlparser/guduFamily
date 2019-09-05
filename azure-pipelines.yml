@@ -28,7 +28,7 @@ steps:
   inputs:
     sshEndpoint: wangzSSH
     sourceFolder: '$(Build.SourcesDirectory)\Working'
-    targetFolder: /big/dom/xwangz/azure/gsp_dotnet
+    targetFolder: '/big/dom/xwangz/azure/gsp_dotnet'
     contents: '*.zip'
     flattenFolders: true
-  enabled: false  
+  enabled: true
