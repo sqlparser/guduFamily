@@ -4,7 +4,16 @@ D:\a\1\s\person\bin\Release\net45\person.dll
 steps:
 - task: ArchiveFiles@2
   displayName: 'Archive $(Build.BinariesDirectory)'
-  
+  inputs:
+    rootFolderOrFile: '$(Build.SourcesDirectory)/Working' 
+    includeRootFolder: false
+    archiveType: 'zip' # Options: zip, 7z, tar, wim
+    #tarCompression: 'gz' # Optional. Options: gz, bz2, xz, none
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip' 
+    replaceExistingArchive: true 
+    #verbose: # Optional
+    #quiet: # Optional
+	
 steps:
 - task: CopyFiles@2
   displayName: 'Copy Files to: c:\targetdir'
@@ -40,3 +49,8 @@ git clone --single-branch --branch master https://sqlparser:bike2metro@github.co
 
 
 Compress-Archive -Path $workingDir\* -DestinationPath $workingDir\$zipFileName
+
+
+Push-Location $gitDir
+git clone https://github.com/sqlparser/gsp_demo_dotnet.git
+Pop-Location

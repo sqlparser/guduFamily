@@ -132,10 +132,6 @@ foreach ($test in ls test/*) {
 		
 Pop-Location
 
-Push-Location $gitDir
-git clone https://github.com/sqlparser/gsp_demo_dotnet.git
-Pop-Location
-
 
 robocopy $generatedLibDir $workingDir\lib *.dll /E /NFL /NDL /NJS /NC /NS /NP /XO /XF | Out-Default
 
