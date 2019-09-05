@@ -22,6 +22,10 @@ steps:
   inputs:
     connection: 'dotnet_demo_github'
     userRepository: 'sqlparser/gsp_demo_dotnet'
+    defaultVersionType: 'latest' # Options: latest, specificVersion, specificTag
+    version: 'abc' # Required when defaultVersionType != Latest
+    itemPattern: '**' # Optional
+    downloadPath: '$(System.ArtifactsDirectory)' 
     
 
     
