@@ -1,0 +1,42 @@
+D:\a\1\s\person\bin\Release\net45\person.dll
+
+
+steps:
+- task: ArchiveFiles@2
+  displayName: 'Archive $(Build.BinariesDirectory)'
+  
+steps:
+- task: CopyFiles@2
+  displayName: 'Copy Files to: c:\targetdir'
+  inputs:
+    SourceFolder: gudusoft/gsqlparser
+    TargetFolder: 'c:\targetdir'
+
+
+steps:
+- task: SSH@0
+  displayName: 'Run shell commands on remote machine'
+  inputs:
+    sshEndpoint: wangzSSH
+    commands: 'mkdir -p /big/dom/xwangz/azure/p'
+  enabled: false
+
+
+steps:
+- task: CopyFilesOverSSH@0
+  displayName: 'Securely copy files to the remote machine'
+  inputs:
+    sshEndpoint: wangzSSH
+    sourceFolder: '$(build.artifactstagingdirectory)'
+    targetFolder: /big/dom/xwangz/azure/p
+    flattenFolders: true
+  enabled: false  
+  
+  
+  
+git clone --single-branch --branch $(branchName) https://$(gitUserName):$(gitPassword)@dev.azure.com/myCompany/My%20Test%20Project/_git
+
+git clone --single-branch --branch master https://sqlparser:bike2metro@github.com/sqlparser/gsp_demo_dotnet.git
+
+
+Compress-Archive -Path $workingDir\* -DestinationPath $workingDir\$zipFileName
