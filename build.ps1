@@ -153,7 +153,7 @@ Pop-Location
 
 
 robocopy $generatedLibDir $workingDir\lib *.dll /E /NFL /NDL /NJS /NC /NS /NP /XO /XF | Out-Default
-robocopy $gitDir\src $workingDir * /E /NFL /NDL /NJS /NC /NS /NP /XO /XF | Out-Default
+robocopy $gitDir $workingDir * /E /NFL /NDL /NJS /NC /NS /NP /XO /XF | Out-Default
 
  
 # Check exit code
