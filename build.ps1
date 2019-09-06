@@ -64,7 +64,7 @@ function Execute-Command($command) {
   $releaseDir = "$baseDir\Release"
   $workingDir = "$baseDir\$workingName"
   $libDir = "$workingDir\lib"
-  $gitDir = "$workingDir\git"
+  
   $generatedLibDir = "$sourceDir\bin\Release"
   $gspDemoSrcDir="c:\prg\gsp_demo_dotnet\src"
 
@@ -89,7 +89,7 @@ Execute-Command -command { del $workingDir -Recurse -Force }
 Write-Host "Creating working directory $workingDir"
 New-Item -Path $workingDir -ItemType Directory
 New-Item -Path $libDir -ItemType Directory
-New-Item -Path $gitDir -ItemType Directory
+
 
 
 
@@ -153,7 +153,10 @@ Pop-Location
 
 
 robocopy $generatedLibDir $workingDir\lib *.dll /E /NFL /NDL /NJS /NC /NS /NP /XO /XF | Out-Default
-robocopy $gitDir $workingDir * /E /NFL /NDL /NJS /NC /NS /NP /XO /XF | Out-Default
+
+New-Item -Path $workingDir/src -ItemType Directory
+
+robocopy $gitDir/gsp_demo_dotnet/src $workingDir/src * /E /NFL /NDL /NJS /NC /NS /NP /XO /XF | Out-Default
 
  
 # Check exit code
