@@ -138,6 +138,8 @@ Pop-Location
 $rootDir  = resolve-path ..
 $gitDir = "$rootDir\gitsrc"
 
+$env:GIT_REDIRECT_STDERR = '2>&1'
+
 Write-Host "Creating root directory $rootDir"
 New-Item -Path $gitDir -ItemType Directory
 
