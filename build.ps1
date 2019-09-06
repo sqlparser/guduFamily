@@ -135,6 +135,21 @@ foreach ($test in ls test/*) {
 Pop-Location
 
 
+$rootDir  = resolve-path ..
+$gitDir = $rootDir+"\gitsrc"
+
+Write-Host "Creating root directory $rootDir"
+New-Item -Path $gitDir -ItemType Directory
+
+Push-Location $gitDir
+
+echo "enter $gitDir, begin git clone..."
+
+git clone https://github.com/sqlparser/gsp_demo_dotnet.git
+
+Pop-Location
+
+
 robocopy $generatedLibDir $workingDir\lib *.dll /E /NFL /NDL /NJS /NC /NS /NP /XO /XF | Out-Default
 
  
