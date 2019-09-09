@@ -31,4 +31,4 @@ steps:
     targetFolder: '/big/dom/xwangz/azure/gsp_dotnet'
     contents: '*.zip \n README.md'
     flattenFolders: true
-  enabled: false
+  enabled: true
