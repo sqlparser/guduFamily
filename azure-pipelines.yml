@@ -17,9 +17,19 @@ steps:
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
 
 - script: |
-    echo Starting the build
-  displayName: 'Build with only master reelase/trial_nuget'
+    echo Starting the build on release/trial_nuget
+  displayName: 'Build with only master release/trial_nuget'
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/release/trial_nuget'))
+  
+- script: |
+    echo Starting the build on release/trial ftp
+  displayName: 'Build with only master release/trial_ftp'
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/release/trial_ftp'))
+  
+- script: |
+    echo Starting the build on release/full
+  displayName: 'Build with only master release/full'
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/release/full'))
   
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: drop'
