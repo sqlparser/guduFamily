@@ -14,12 +14,12 @@ steps:
 - script: |
     echo Starting the build
   displayName: 'Build with only master branch'
-  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master')
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
 
 - script: |
     echo Starting the build
   displayName: 'Build with only master reelase/trial_nuget'
-  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/release/trial_nuget')
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/release/trial_nuget'))
   
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: drop'
