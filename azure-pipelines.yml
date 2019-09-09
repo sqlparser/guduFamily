@@ -29,6 +29,8 @@ steps:
     sshEndpoint: wangzSSH
     sourceFolder: '$(Build.SourcesDirectory)\Working'
     targetFolder: '/big/dom/xwangz/azure/gsp_dotnet'
-    contents: '*.zip \n README.md'
+    contents: |
+        *.zip 
+        README.md
     flattenFolders: true
   enabled: true
