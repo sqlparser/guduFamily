@@ -1,0 +1,49 @@
+trigger:
+- release/*
+
+pool:
+  vmImage: 'ubuntu-16.04' # other options: 'macOS-10.13', 'vs2017-win2016' 'windows-2019'
+
+
+steps:
+- script: |
+    echo Starting the build
+  displayName: 'Build with Maven'
+  
+- script: |
+    echo Starting the build
+  displayName: 'Build with only master branch'
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+
+- script: |
+    echo Starting the build on release/trial_nuget
+  displayName: 'Build with only master release/trial_nuget'
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/release/trial_nuget'))
+  
+- script: |
+    echo Starting the build on release/trial ftp
+  displayName: 'Build with only master release/trial_ftp'
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/release/trial_ftp'))
+  
+- script: |
+    echo Starting the build on release/full
+  displayName: 'Build with only master release/full'
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/release/full'))
+  
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: drop'
+  inputs:
+    PathtoPublish: '$(Build.SourcesDirectory)\Working' 
+  condition: succeededOrFailed()
+  enabled: false
+  
+
+- task: CopyFilesOverSSH@0
+  displayName: 'Securely copy files to the remote machine'
+  inputs:
+    sshEndpoint: wangzSSH
+    sourceFolder: '$(Build.SourcesDirectory)\Working'
+    targetFolder: '/big/dom/xwangz/azure/gsp_dotnet'
+    contents: '*.zip'
+    flattenFolders: true
+  enabled: false

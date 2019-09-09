@@ -156,7 +156,8 @@ robocopy $generatedLibDir $workingDir\lib *.dll /E /NFL /NDL /NJS /NC /NS /NP /X
 
 New-Item -Path $workingDir/src -ItemType Directory
 
-robocopy $gitDir/gsp_demo_dotnet/src $workingDir/src * /E /NFL /NDL /NJS /NC /NS /NP /XO /XF | Out-Default
+# robocopy $gitDir/gsp_demo_dotnet/src $workingDir/src * /E /NFL /NDL /NJS /NC /NS /NP /XO /XF | Out-Default
+Copy-Item "$gitDir/gsp_demo_dotnet/README.md" -Destination "$workingDir"
 
  
 # Check exit code
