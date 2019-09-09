@@ -1,20 +1,26 @@
 trigger:
 - master
+- feature/*
 
 pool:
-  vmImage: 'windows-2019'
+  vmImage: 'ubuntu-16.04' # other options: 'macOS-10.13', 'vs2017-win2016' 'windows-2019'
+
 
 steps:
-- powershell: |
-    dotnet --info
-  displayName: 'Dotnet installs'
-
-
-- powershell: |
-    .\build.ps1
-  displayName: 'Run build'
+- script: |
+    echo Starting the build
+  displayName: 'Build with Maven'
   
-     
+- script: |
+    echo Starting the build
+  displayName: 'Build with only master branch'
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master')
+
+- script: |
+    echo Starting the build
+  displayName: 'Build with only master reelase/trial_nuget'
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/release/trial_nuget')
+  
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: drop'
   inputs:

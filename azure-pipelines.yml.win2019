@@ -1,0 +1,34 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'windows-2019'
+
+steps:
+- powershell: |
+    dotnet --info
+  displayName: 'Dotnet installs'
+
+
+- powershell: |
+    .\build.ps1
+  displayName: 'Run build'
+  
+     
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: drop'
+  inputs:
+    PathtoPublish: '$(Build.SourcesDirectory)\Working' 
+  condition: succeededOrFailed()
+  
+  
+
+- task: CopyFilesOverSSH@0
+  displayName: 'Securely copy files to the remote machine'
+  inputs:
+    sshEndpoint: wangzSSH
+    sourceFolder: '$(Build.SourcesDirectory)\Working'
+    targetFolder: '/big/dom/xwangz/azure/gsp_dotnet'
+    contents: '*.zip'
+    flattenFolders: true
+  enabled: false
