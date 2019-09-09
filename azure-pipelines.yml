@@ -26,7 +26,7 @@ steps:
   inputs:
     PathtoPublish: '$(Build.SourcesDirectory)\Working' 
   condition: succeededOrFailed()
-  
+  enabled: false
   
 
 - task: CopyFilesOverSSH@0
